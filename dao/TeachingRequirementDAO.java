@@ -1,5 +1,7 @@
-import java.util.List;
+package dao;
 
+import java.util.List;
+import model.TeachingRequirement;
 /**
  * 教学需求数据访问对象接口 (Teaching Requirement DAO Interface)
  * 定义对教学需求数据的访问操作

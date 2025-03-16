@@ -1,7 +1,11 @@
+package dao.impl;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import model.TeachingRequirement;
+import dao.TeachingRequirementDAO;
 
 /**
  * 文件实现的教学需求数据访问对象 (File-based Teaching Requirement DAO)
