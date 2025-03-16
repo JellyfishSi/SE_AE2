@@ -299,13 +299,13 @@ public class ClassDirectorMenu {
 
         int index = 1;
         for (TeachingRequirement requirement : requirements) {
-            System.out.println(index + ". " + requirement);
+            System.out.println(index + ". " + requirement.getCourseName() + " (" + requirement.getCourseCode() + ")");
             System.out.println("   ID: " + requirement.getId());
             System.out.println("   Course: " + requirement.getCourseName() + " (" + requirement.getCourseCode() + ")");
-            System.out.println("   Time: " + requirement.getSchedule());
+            System.out.println("   Schedule: " + requirement.getSchedule());
             System.out.println("   Location: " + requirement.getLocation());
             System.out.println("   Required Qualifications: " + String.join(", ", requirement.getRequiredQualifications()));
-            System.out.println("   Status: " + requirement.getStatus().getDisplayName());
+            System.out.println("   Status: " + requirement.getStatus().name());
             System.out.println("   Notes: " + requirement.getNotes());
             System.out.println();
             index++;

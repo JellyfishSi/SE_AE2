@@ -220,13 +220,13 @@ public class TeachingRequirement implements Serializable {
 
     @Override
     public String toString() {
-        return "教学需求 [ID=" + id +
-                ", 课程=" + courseName +
+        return "Requirement [ID=" + id +
+                ", Course=" + courseName +
                 " (" + courseCode + ")" +
-                ", 时间=" + schedule +
-                ", 地点=" + location +
-                ", 状态=" + status.getDisplayName() +
-                ", 已分配教师数=" + assignedTeacherIds.size() +
+                ", Schedule=" + schedule +
+                ", Location=" + location +
+                ", Status=" + status.name() +
+                ", Assigned Teachers=" + assignedTeacherIds.size() +
                 "]";
     }
 }
