@@ -13,7 +13,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // 初始化数据访问对象
-        TeachingRequirementDAO requirementDAO = new FileTeachingRequirementDAO(REQUIREMENTS_FILE_PATH);
+        TeachingRequirementDAO requirementDAO = new FileTeachingRequirementDAO(DATA_FILE_PATH);
 
         // 初始化控制器
         ClassDirectorController classDirectorController = new ClassDirectorController(requirementDAO);
