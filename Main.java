@@ -7,13 +7,13 @@ import java.util.Scanner;
 
 public class Main {
     // 文件路径常量
-    private static final String DATA_FILE_PATH = "data/data.dat";
+    private static final String REQUIREMENT_FILE_PATH = "data/requirements.dat";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         // 初始化数据访问对象
-        TeachingRequirementDAO requirementDAO = new FileTeachingRequirementDAO(DATA_FILE_PATH);
+        TeachingRequirementDAO requirementDAO = new FileTeachingRequirementDAO(REQUIREMENT_FILE_PATH);
 
         // 初始化控制器
         ClassDirectorController classDirectorController = new ClassDirectorController(requirementDAO);
