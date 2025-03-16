@@ -8,7 +8,7 @@ import java.util.List;
  * Defines operations for managing teacher data(CRUD)
  * and data persistence
  * @author Tianshu Luo
- * @version 1.0.0
+ * @version 1.1.0
 */
 public interface TeacherDAO {
     /**
@@ -30,7 +30,7 @@ public interface TeacherDAO {
      * @param id the id of the teacher to be deleted
      * @return true if successful, otherwise false
      */
-    boolean deleteById(int id);
+    boolean delete(int id);
 
     /**
      * Find the registered teacher by ID
@@ -40,10 +40,10 @@ public interface TeacherDAO {
     Teacher findById(int id);
 
     /**
-     * Get a list of all the teachers
+     * Find a list of all the teachers
      * @return list of all the teachers
      */
-    List<Teacher> getAll();
+    List<Teacher> findAll();
 
     /**
      * Save information of all the teachers
