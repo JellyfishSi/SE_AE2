@@ -10,7 +10,7 @@ import java.util.List;
  * @author Tianshu Luo
  * @version 1.0.0
 */
-public interface TeacherDao {
+public interface TeacherDAO {
     /**
      * Save the information of a new teacher
      * @param teacher the teacher to be saved
