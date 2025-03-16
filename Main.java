@@ -1,13 +1,18 @@
 import controller.ClassDirectorController;
+import controller.TeacherController;
+import dao.TeacherDAO;
 import dao.TeachingRequirementDAO;
 import dao.impl.FileTeachingRequirementDAO;
+import model.FileTeacherDAO;
+import model.Teacher;
 import view.ClassDirectorMenu;
+import view.TeacherMenu;
 
 import java.util.Scanner;
 
 public class Main {
     // 文件路径常量
-    private static final String REQUIREMENT_FILE_PATH = "data/requirements.dat";
+    private static final String REQUIREMENT_FILE_PATH = "requirements.dat";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -21,6 +26,9 @@ public class Main {
         // 初始化视图
         ClassDirectorMenu classDirectorMenu = new ClassDirectorMenu(classDirectorController, scanner);
 
+        TeacherDAO teacherDAO = new FileTeacherDAO();
+        TeacherController teacherController = new TeacherController(teacherDAO);
+        TeacherMenu teacherMenu = new TeacherMenu(teacherController);
         // Main Loop
         while (true) {
             // Menu Display
@@ -51,7 +59,7 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("T.B.D. ");
+                    teacherMenu.displayMenu();
                     break;
 
                 case 0:
