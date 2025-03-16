@@ -97,6 +97,11 @@ public class FileTeacherDAO implements TeacherDAO {
     }
 
     @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
+    @Override
     public Teacher findById(int id) {
         return teacherDB.get(id);
     }
@@ -108,6 +113,11 @@ public class FileTeacherDAO implements TeacherDAO {
             return new ArrayList<>();
         }
         return new ArrayList<>(teacherDB.values());
+    }
+
+    @Override
+    public List<Teacher> findAll() {
+        return List.of();
     }
 
     @Override

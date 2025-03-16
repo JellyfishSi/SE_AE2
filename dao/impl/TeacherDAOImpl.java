@@ -51,6 +51,11 @@ public class TeacherDAOImpl implements TeacherDAO {
     }
 
     @Override
+    public boolean deleteById(int id) {
+        return false;
+    }
+
+    @Override
     public boolean delete(int id) {
         boolean removed = teacherList.removeIf(t -> t.getId() == id);
         if (removed) {
@@ -67,6 +72,11 @@ public class TeacherDAOImpl implements TeacherDAO {
                 .filter(t -> t.getId() == id)
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Teacher> getAll() {
+        return List.of();
     }
 
     @Override
@@ -105,5 +115,10 @@ public class TeacherDAOImpl implements TeacherDAO {
             teacherList = new ArrayList<>();
             return false;
         }
+    }
+
+    @Override
+    public Teacher getTeacherById(String teacherId) {
+        return null;
     }
 }

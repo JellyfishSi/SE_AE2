@@ -32,6 +32,8 @@ public interface TeacherDAO {
      */
     boolean deleteById(int id);
 
+    boolean delete(int id);
+
     /**
      * Find the registered teacher by ID
      * @param id the id of the teacher to be found
@@ -44,6 +46,8 @@ public interface TeacherDAO {
      * @return list of all the teachers
      */
     List<Teacher> getAll();
+
+    List<Teacher> findAll();
 
     /**
      * Save information of all the teachers
