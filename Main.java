@@ -56,7 +56,7 @@ public class Main {
 
                 case 4:
                     System.out.println("Saving data...");
-                    requirementDAO.saveAll();1
+                    requirementDAO.saveAll();
                     System.out.println("Thank you for using! Goodbye.");
                     scanner.close();
                     return;
