@@ -4,7 +4,8 @@ import model.Teacher;
 
 import java.util.List;
 
-/** Teacher DAO Interface 
+/**
+ * Teacher DAO Interface 
  * Defines operations for managing teacher data(CRUD)
  * and data persistence
  * @author Tianshu Luo
