@@ -1,3 +1,8 @@
+import controller.ClassDirectorController;
+import dao.TeachingRequirementDAO;
+import dao.impl.FileTeachingRequirementDAO;
+import view.ClassDirectorMenu;
+
 import java.util.Scanner;
 
 public class Main {
