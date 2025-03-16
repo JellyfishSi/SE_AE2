@@ -14,7 +14,7 @@ public class TeachingRequirement implements Serializable {
     private static final long serialVersionUID = 1L;
 
     // 唯一标识符
-    private String id;
+    private final String id;
 
     // 课程名称
     private String courseName;
@@ -41,7 +41,7 @@ public class TeachingRequirement implements Serializable {
     private String notes;
 
     // 创建日期
-    private long createdTimestamp;
+    private final long createdTimestamp;
 
     // 最后修改日期
     private long lastModifiedTimestamp;
@@ -60,6 +60,7 @@ public class TeachingRequirement implements Serializable {
             this.displayName = displayName;
         }
 
+        @SuppressWarnings("unused")
         public String getDisplayName() {
             return displayName;
         }
@@ -143,6 +144,7 @@ public class TeachingRequirement implements Serializable {
         updateModificationTime();
     }
 
+    @SuppressWarnings("unused")
     public void addRequiredQualification(String qualification) {
         this.requiredQualifications.add(qualification);
         updateModificationTime();
@@ -152,21 +154,25 @@ public class TeachingRequirement implements Serializable {
         return status;
     }
 
+    @SuppressWarnings("unused")
     public void setStatus(RequirementStatus status) {
         this.status = status;
         updateModificationTime();
     }
 
+    @SuppressWarnings("unused")
     public List<String> getAssignedTeacherIds() {
         return assignedTeacherIds;
     }
 
+    @SuppressWarnings("unused")
     public void setAssignedTeacherIds(List<String> assignedTeacherIds) {
         this.assignedTeacherIds = assignedTeacherIds;
         updateStatus();
         updateModificationTime();
     }
 
+    @SuppressWarnings("unused")
     public void assignTeacher(String teacherId) {
         if (!assignedTeacherIds.contains(teacherId)) {
             assignedTeacherIds.add(teacherId);
@@ -175,6 +181,7 @@ public class TeachingRequirement implements Serializable {
         }
     }
 
+    @SuppressWarnings("unused")
     public void removeTeacher(String teacherId) {
         assignedTeacherIds.remove(teacherId);
         updateStatus();
@@ -190,10 +197,12 @@ public class TeachingRequirement implements Serializable {
         updateModificationTime();
     }
 
+    @SuppressWarnings("unused")
     public long getCreatedTimestamp() {
         return createdTimestamp;
     }
 
+    @SuppressWarnings("unused")
     public long getLastModifiedTimestamp() {
         return lastModifiedTimestamp;
     }
@@ -220,13 +229,13 @@ public class TeachingRequirement implements Serializable {
 
     @Override
     public String toString() {
-        return "教学需求 [ID=" + id +
-                ", 课程=" + courseName +
+        return "Requirement [ID=" + id +
+                ", Course=" + courseName +
                 " (" + courseCode + ")" +
-                ", 时间=" + schedule +
-                ", 地点=" + location +
-                ", 状态=" + status.getDisplayName() +
-                ", 已分配教师数=" + assignedTeacherIds.size() +
+                ", Schedule=" + schedule +
+                ", Location=" + location +
+                ", Status=" + status.name() +
+                ", Assigned Teachers=" + assignedTeacherIds.size() +
                 "]";
     }
 }

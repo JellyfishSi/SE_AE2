@@ -7,13 +7,13 @@ import java.util.Scanner;
 
 public class Main {
     // 文件路径常量
-    private static final String DATA_FILE_PATH = "data/data.dat";
+    private static final String REQUIREMENT_FILE_PATH = "data/requirements.dat";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         // 初始化数据访问对象
-        TeachingRequirementDAO requirementDAO = new FileTeachingRequirementDAO(REQUIREMENTS_FILE_PATH);
+        TeachingRequirementDAO requirementDAO = new FileTeachingRequirementDAO(REQUIREMENT_FILE_PATH);
 
         // 初始化控制器
         ClassDirectorController classDirectorController = new ClassDirectorController(requirementDAO);
@@ -28,7 +28,7 @@ public class Main {
             System.out.println("1. Class Director System");
             System.out.println("2. Administrator System");
             System.out.println("3. Part-Time Teacher System");
-            System.out.println("4. Exit");
+            System.out.println("0. Exit");
             System.out.print("Enter choice: ");
 
             // Get Input
@@ -54,7 +54,7 @@ public class Main {
                     System.out.println("T.B.D. ");
                     break;
 
-                case 4:
+                case 0:
                     System.out.println("Saving data...");
                     requirementDAO.saveAll();
                     System.out.println("Thank you for using! Goodbye.");
@@ -62,7 +62,7 @@ public class Main {
                     return;
 
                 default:
-                    System.out.println("Invalid choice! Please enter a number between 1 and 4.");
+                    System.out.println("Invalid choice! Please enter a number between 0 and 3.");
             }
         }
     }
