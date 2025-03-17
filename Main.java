@@ -1,4 +1,5 @@
 import controller.ClassDirectorController;
+import controller.AdminController;
 import controller.TeacherController;
 import dao.TeacherDAO;
 import dao.TeachingRequirementDAO;
@@ -6,6 +7,7 @@ import dao.impl.FileTeachingRequirementDAO;
 import model.FileTeacherDAO;
 import model.Teacher;
 import view.ClassDirectorMenu;
+import view.AdminMenu;
 import view.TeacherMenu;
 
 import java.util.Scanner;
@@ -13,25 +15,28 @@ import java.util.Scanner;
 public class Main {
     // 文件路径常量
     private static final String REQUIREMENT_FILE_PATH = "requirements.dat";
+    private static final String TEACHER_FILE_PATH = "teachers.dat";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         // 初始化数据访问对象
         TeachingRequirementDAO requirementDAO = new FileTeachingRequirementDAO(REQUIREMENT_FILE_PATH);
+        TeacherDAO teacherDAO = new FileTeacherDAO();
 
         // 初始化控制器
         ClassDirectorController classDirectorController = new ClassDirectorController(requirementDAO);
+        AdminController adminController = new AdminController(teacherDAO);
+        TeacherController teacherController = new TeacherController(teacherDAO);
 
         // 初始化视图
         ClassDirectorMenu classDirectorMenu = new ClassDirectorMenu(classDirectorController, scanner);
-
-        TeacherDAO teacherDAO = new FileTeacherDAO();
-        TeacherController teacherController = new TeacherController(teacherDAO);
+        AdminMenu adminMenu = new AdminMenu(adminController, scanner);
         TeacherMenu teacherMenu = new TeacherMenu(teacherController);
+
         // Main Loop
         while (true) {
-            // Menu Display
+            // Menu display
             System.out.println("\n========== Part-Time Teacher Management System ==========");
             System.out.println("1. Class Director System");
             System.out.println("2. Administrator System");
@@ -39,7 +44,7 @@ public class Main {
             System.out.println("0. Exit");
             System.out.print("Enter choice: ");
 
-            // Get Input
+            // Get input
             int choice;
             try {
                 choice = Integer.parseInt(scanner.nextLine());
@@ -55,7 +60,7 @@ public class Main {
                     classDirectorMenu.showMainMenu();
                     break;
                 case 2:
-                    System.out.println("T.B.D. ");
+                    adminMenu.showMainMenu();
                     break;
 
                 case 3:
