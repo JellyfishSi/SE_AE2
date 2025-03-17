@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.util.Map;
 
 public class Teacher implements Serializable {
     private int id;
