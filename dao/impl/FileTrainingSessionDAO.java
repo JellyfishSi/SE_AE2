@@ -1,5 +1,6 @@
-package dao;
+package dao.impl;
 
+import dao.TrainingSessionDAO;
 import model.TrainingSession;
 
 import java.util.*;

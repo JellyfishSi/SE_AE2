@@ -4,8 +4,7 @@ import controller.TeacherController;
 import dao.TeacherDAO;
 import dao.TeachingRequirementDAO;
 import dao.impl.FileTeachingRequirementDAO;
-import model.FileTeacherDAO;
-import model.Teacher;
+import dao.impl.FileTeacherDAO;
 import view.ClassDirectorMenu;
 import view.AdminMenu;
 import view.TeacherMenu;
@@ -14,14 +13,13 @@ import java.util.Scanner;
 
 public class Main {
     // 文件路径常量
-    private static final String REQUIREMENT_FILE_PATH = "requirements.dat";
     private static final String TEACHER_FILE_PATH = "teachers.dat";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         // 初始化数据访问对象
-        TeachingRequirementDAO requirementDAO = new FileTeachingRequirementDAO(REQUIREMENT_FILE_PATH);
+        TeachingRequirementDAO requirementDAO = new FileTeachingRequirementDAO();
         TeacherDAO teacherDAO = new FileTeacherDAO();
 
         // 初始化控制器

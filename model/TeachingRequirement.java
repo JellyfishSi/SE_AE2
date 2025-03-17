@@ -76,6 +76,7 @@ public class TeachingRequirement implements Serializable {
         this.status = RequirementStatus.UNASSIGNED;
         this.createdTimestamp = System.currentTimeMillis();
         this.lastModifiedTimestamp = System.currentTimeMillis();
+        this.notes = "";
     }
 
     /**

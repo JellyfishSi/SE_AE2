@@ -1,9 +1,7 @@
 package dao.impl;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 import model.TeachingRequirement;
 import dao.TeachingRequirementDAO;
 
@@ -12,11 +10,20 @@ import dao.TeachingRequirementDAO;
  * 使用文件系统实现教学需求数据的持久化
  */
 public class FileTeachingRequirementDAO implements TeachingRequirementDAO {
-    // 存储所有教学需求的内存集合
-    private List<TeachingRequirement> requirements;
+    private static final String DIRECTORY_PATH = "data";
+    private static final String FILE_PATH = DIRECTORY_PATH + "/requirements.json";
 
-    // 数据文件路径
-    private final String filePath;
+    // 存储所有教学需求的内存集合
+    private Map<String, TeachingRequirement> requirementsMap;
+
+    /**
+     * 构造函数
+     */
+    public FileTeachingRequirementDAO() {
+        createDataDirectory();
+        this.requirementsMap = new HashMap<>();
+        loadAll();
+    }
 
     /**
      * 构造函数
@@ -24,10 +31,18 @@ public class FileTeachingRequirementDAO implements TeachingRequirementDAO {
      * @param filePath 数据文件路径
      */
     public FileTeachingRequirementDAO(String filePath) {
-        this.filePath = filePath;
-        this.requirements = new ArrayList<>();
-        // 尝试从文件加载数据
-        loadAll();
+        this();
+    }
+
+    // 自动创建 data 目录
+    private void createDataDirectory() {
+        File directory = new File(DIRECTORY_PATH);
+        if (!directory.exists()) {
+            boolean created = directory.mkdirs();
+            if (!created) {
+                System.err.println("无法创建 data 目录");
+            }
+        }
     }
 
     @Override
@@ -37,51 +52,48 @@ public class FileTeachingRequirementDAO implements TeachingRequirementDAO {
             return false;
         }
 
-        requirements.add(requirement);
+        requirementsMap.put(requirement.getId(), requirement);
         return saveAll();
     }
 
     @Override
     public boolean update(TeachingRequirement requirement) {
         // 查找并替换现有需求
-        for (int i = 0; i < requirements.size(); i++) {
-            if (requirements.get(i).getId().equals(requirement.getId())) {
-                requirements.set(i, requirement);
-                return saveAll();
-            }
+        if (!requirementsMap.containsKey(requirement.getId())) {
+            return false;
         }
-        return false;
+
+        requirementsMap.put(requirement.getId(), requirement);
+        return saveAll();
     }
 
     @Override
     public boolean delete(String id) {
-        boolean removed = requirements.removeIf(r -> r.getId().equals(id));
-        if (removed) {
-            return saveAll();
+        if (!requirementsMap.containsKey(id)) {
+            return false;
         }
-        return false;
+
+        requirementsMap.remove(id);
+        return saveAll();
     }
 
     @Override
     public TeachingRequirement findById(String id) {
-        return requirements.stream()
-                .filter(r -> r.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        return requirementsMap.get(id);
     }
 
     @Override
     public List<TeachingRequirement> findAll() {
-        return new ArrayList<>(requirements);
+        return new ArrayList<>(requirementsMap.values());
     }
 
     @Override
     public boolean saveAll() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
-            oos.writeObject(requirements);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_PATH))) {
+            oos.writeObject(new ArrayList<>(requirementsMap.values()));
             return true;
         } catch (IOException e) {
-            System.err.println("保存数据时出错: " + e.getMessage());
+            System.err.println("Error saving data: " + e.getMessage());
             return false;
         }
     }
@@ -89,21 +101,27 @@ public class FileTeachingRequirementDAO implements TeachingRequirementDAO {
     @SuppressWarnings("unchecked")
     @Override
     public boolean loadAll() {
-        File file = new File(filePath);
+        File file = new File(FILE_PATH);
 
         // 如果文件不存在，创建空列表并返回成功
         if (!file.exists()) {
-            requirements = new ArrayList<>();
+            requirementsMap = new HashMap<>();
             return true;
         }
 
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
-            requirements = (List<TeachingRequirement>) ois.readObject();
+            List<TeachingRequirement> requirementsList = (List<TeachingRequirement>) ois.readObject();
+
+            // 将列表转换为Map
+            requirementsMap.clear();
+            for (TeachingRequirement requirement : requirementsList) {
+                requirementsMap.put(requirement.getId(), requirement);
+            }
             return true;
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("加载数据时出错: " + e.getMessage());
-            // 如果加载失败，初始化一个新的空列表
-            requirements = new ArrayList<>();
+            // 如果加载失败，初始化一个新的空Map
+            requirementsMap = new HashMap<>();
             return false;
         }
     }

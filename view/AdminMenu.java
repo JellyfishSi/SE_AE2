@@ -48,16 +48,31 @@ public class AdminMenu {
             continue;
         }
 
-        switch (choice) {
-            case 1 -> addTeacher();
-            case 2 -> updateTeacher();
-            case 3 -> deleteTeacher();
-            case 4 -> listAllTeachers();
-            case 5 -> findTeacherById();
-            case 6 -> searchTeachersByQualification();
-            case 0 -> { return; }
-            default -> System.out.println("Invalid choice! Please enter a valid number.");
-        }
+            switch (choice) {
+                case 1:
+                    addTeacher();
+                    break;
+                case 2:
+                    updateTeacher();
+                    break;
+                case 3:
+                    deleteTeacher();
+                    break;
+                case 4:
+                    listAllTeachers();
+                    break;
+                case 5:
+                    findTeacherById();
+                    break;
+                case 6:
+                    searchTeachersByQualification();
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("Invalid choice! Please enter a valid number.");
+                    break;
+            }
     }
 }
 

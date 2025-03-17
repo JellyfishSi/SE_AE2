@@ -3,7 +3,8 @@ package controller;
 import dao.TeacherDAO;
 import model.Teacher;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Controller for managing Teacher-related operations for administrator.
@@ -73,7 +74,7 @@ public class AdminController {
     public List<Teacher> searchTeachersByQualification(String keyword) {
         return teacherDAO.findAll().stream()
                 .filter(t -> t.getQualifications().toLowerCase().contains(keyword.toLowerCase()))
-                .toList();
+                .collect(Collectors.toList());
     }
 
 }

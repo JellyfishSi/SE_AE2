@@ -9,6 +9,7 @@ public class Teacher implements Serializable {
     private String contact;
     private boolean isAvailable;
     private String qualifications;
+    private static final long serialVersionUID = 1L;
 
     // Constructor
     public Teacher(int id, String name, String contact, boolean isAvailable, String qualifications) {
