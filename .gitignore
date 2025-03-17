@@ -7,5 +7,5 @@
 /data
 /dataSources.local.xml
 /.idea
-
+/out
 /*.pdf
