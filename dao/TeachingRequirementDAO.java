@@ -3,60 +3,60 @@ package dao;
 import java.util.List;
 import model.TeachingRequirement;
 /**
- * 教学需求数据访问对象接口 (Teaching Requirement DAO Interface)
- * 定义对教学需求数据的访问操作
+ * Teaching Requirement DAO Interface
+ * Defines operations for accessing teaching requirement data
  */
 public interface TeachingRequirementDAO {
     /**
-     * 保存一个新的教学需求
+     * Save a new teaching requirement
      *
-     * @param requirement 要保存的教学需求对象
-     * @return 保存成功返回true，否则返回false
+     * @param requirement The teaching requirement object to save
+     * @return Returns true if saved successfully, otherwise returns false
      */
     boolean save(TeachingRequirement requirement);
 
     /**
-     * 更新已存在的教学需求
+     * Update an existing teaching requirement
      *
-     * @param requirement 要更新的教学需求对象
-     * @return 更新成功返回true，否则返回false
+     * @param requirement The teaching requirement object to update
+     * @return Returns true if updated successfully, otherwise returns false
      */
     boolean update(TeachingRequirement requirement);
 
     /**
-     * 根据ID删除教学需求
+     * Delete a teaching requirement by ID
      *
-     * @param id 要删除的教学需求ID
-     * @return 删除成功返回true，否则返回false
+     * @param id The ID of the teaching requirement to delete
+     * @return Returns true if deleted successfully, otherwise returns false
      */
     boolean delete(String id);
 
     /**
-     * 根据ID查找教学需求
+     * Find a teaching requirement by ID
      *
-     * @param id 要查找的教学需求ID
-     * @return 找到的教学需求对象，如果不存在则返回null
+     * @param id The ID of the teaching requirement to find
+     * @return The found teaching requirement object, returns null if not found
      */
     TeachingRequirement findById(String id);
 
     /**
-     * 获取所有教学需求
+     * Get all teaching requirements
      *
-     * @return 所有教学需求的列表
+     * @return A list of all teaching requirements
      */
     List<TeachingRequirement> findAll();
 
     /**
-     * 保存所有教学需求
+     * Save all teaching requirements
      *
-     * @return 保存成功返回true，否则返回false
+     * @return Returns true if saved successfully, otherwise returns false
      */
     boolean saveAll();
 
     /**
-     * 加载所有教学需求
+     * Load all teaching requirements
      *
-     * @return 加载成功返回true，否则返回false
+     * @return Returns true if loaded successfully, otherwise returns false
      */
     boolean loadAll();
 }

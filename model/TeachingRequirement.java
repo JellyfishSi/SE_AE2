@@ -6,53 +6,53 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * 教学需求类 (Teaching Requirement)
- * 表示课程主任创建的教学需求
+ * Teaching Requirement Class
+ * Represents a teaching requirement created by the class director
  */
 public class TeachingRequirement implements Serializable {
-    // 序列化版本ID
+    // Serialization version ID
     private static final long serialVersionUID = 1L;
 
-    // 唯一标识符
+    // Unique identifier
     private final String id;
 
-    // 课程名称
+    // Course name
     private String courseName;
 
-    // 课程代码
+    // Course code
     private String courseCode;
 
-    // 时间安排 (例如: "周一 9:00-11:00")
+    // Time schedule (e.g. "Monday 9:00-11:00")
     private String schedule;
 
-    // 地点
+    // Location
     private String location;
 
-    // 所需教师资格
+    // Required teacher qualifications
     private List<String> requiredQualifications;
 
-    // 状态 (未分配, 部分分配, 已分配)
+    // Status (unassigned, partially assigned, fully assigned)
     private RequirementStatus status;
 
-    // 已分配的教师ID列表
+    // List of assigned teacher IDs
     private List<String> assignedTeacherIds;
 
-    // 备注
+    // Notes
     private String notes;
 
-    // 创建日期
+    // Creation date
     private final long createdTimestamp;
 
-    // 最后修改日期
+    // Last modification date
     private long lastModifiedTimestamp;
 
     /**
-     * 教学需求状态枚举
+     * Teaching requirement status enumeration
      */
     public enum RequirementStatus {
-        UNASSIGNED("未分配"),
-        PARTIALLY_ASSIGNED("部分分配"),
-        FULLY_ASSIGNED("已分配");
+        UNASSIGNED("Unassigned"),
+        PARTIALLY_ASSIGNED("Partially Assigned"),
+        FULLY_ASSIGNED("Fully Assigned");
 
         private final String displayName;
 
@@ -67,7 +67,7 @@ public class TeachingRequirement implements Serializable {
     }
 
     /**
-     * 默认构造函数
+     * Default constructor
      */
     public TeachingRequirement() {
         this.id = UUID.randomUUID().toString();
@@ -80,7 +80,7 @@ public class TeachingRequirement implements Serializable {
     }
 
     /**
-     * 带参数的构造函数
+     * Parameterized constructor
      */
     public TeachingRequirement(String courseName, String courseCode, String schedule,
                                String location, List<String> requiredQualifications) {
@@ -209,20 +209,21 @@ public class TeachingRequirement implements Serializable {
     }
 
     /**
-     * 更新需求状态
+     * Update requirement status
      */
     private void updateStatus() {
         if (assignedTeacherIds.isEmpty()) {
             status = RequirementStatus.UNASSIGNED;
         } else {
-            // 这里可以根据业务需求定义何时为部分分配，何时为完全分配
-            // 例如，可以设定每个需求需要几位教师，或根据其他标准
+            // Business logic can be defined here to determine when a requirement is
+            // partially or fully assigned
+            // For example, based on how many teachers are needed, or other criteria
             status = RequirementStatus.PARTIALLY_ASSIGNED;
         }
     }
 
     /**
-     * 更新最后修改时间
+     * Update last modification time
      */
     private void updateModificationTime() {
         this.lastModifiedTimestamp = System.currentTimeMillis();
