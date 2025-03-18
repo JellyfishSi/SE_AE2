@@ -2,7 +2,6 @@ package dao;
 
 import java.util.List;
 import model.TrainingSession;
-import java.util.*;
 
 public interface TrainingSessionDAO {
     void addTrainingSession(TrainingSession session);

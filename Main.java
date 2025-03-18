@@ -12,9 +12,6 @@ import view.TeacherMenu;
 import java.util.Scanner;
 
 public class Main {
-    // 文件路径常量
-    private static final String TEACHER_FILE_PATH = "teachers.dat";
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
