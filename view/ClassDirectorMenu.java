@@ -9,37 +9,37 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * 课程主任菜单 (Class Director Menu)
- * 提供课程主任用户界面，处理用户输入和显示输出
+ * Class Director Menu
+ * Provide course director user interface to handle user input and display outputs
  */
 public class ClassDirectorMenu {
     private final ClassDirectorController controller;
     private final Scanner scanner;
 
     /**
-     * 构造函数
+     * constructor
      *
-     * @param controller 课程主任控制器
-     * @param scanner 输入扫描器
+     * @param controller Course Director Controller
+     * @param scanner Input Scanner
      */
     public ClassDirectorMenu(ClassDirectorController controller, Scanner scanner) {
         this.controller = controller;
         this.scanner = scanner;
     }
     /**
-     * 显示课程主任主菜单
+     * Display the Course Director Main Menu
      */
     public void showMainMenu() {
         while (true) {
             System.out.println("\n======== Class Director System ========");
-            System.out.println("1. Create Teaching Requirement (创建教学需求)");
-            System.out.println("2. View All Requirements (查看所有教学需求)");
-            System.out.println("3. Modify Requirement (修改教学需求)");
-            System.out.println("4. Delete Requirement (删除教学需求)");
-            System.out.println("5. View Requirements by Status (按状态查看需求)");
-            System.out.println("6. Search Requirements (搜索教学需求)");
-            System.out.println("0. Return to Main Menu (返回主菜单)");
-            System.out.print("Please select (请选择): ");
+            System.out.println("1. Create Teaching Requirement");
+            System.out.println("2. View All Requirements");
+            System.out.println("3. Modify Requirement");
+            System.out.println("4. Delete Requirement");
+            System.out.println("5. View Requirements by Status");
+            System.out.println("6. Search Requirements");
+            System.out.println("0. Return to Main Menu");
+            System.out.print("Please select: ");
 
             int choice;
             try {
@@ -77,7 +77,7 @@ public class ClassDirectorMenu {
     }
 
     /**
-     * 创建教学需求
+     * Creating Instructional Requirements
      */
     private void createRequirement() {
         System.out.println("\n===== Create Teaching Requirement =====");
@@ -115,7 +115,7 @@ public class ClassDirectorMenu {
     }
 
     /**
-     * 查看所有教学需求
+     * View all teaching needs
      */
     private void viewAllRequirements() {
         List<TeachingRequirement> requirements = controller.getAllRequirements();
@@ -123,7 +123,7 @@ public class ClassDirectorMenu {
     }
 
     /**
-     * 修改教学需求
+     * Modification of teaching requirements
      */
     private void modifyRequirement() {
         List<TeachingRequirement> requirements = controller.getAllRequirements();
@@ -198,7 +198,7 @@ public class ClassDirectorMenu {
     }
 
     /**
-     * 删除教学需求
+     * Delete Instructional Requirements
      */
     private void deleteRequirement() {
         List<TeachingRequirement> requirements = controller.getAllRequirements();
@@ -230,7 +230,7 @@ public class ClassDirectorMenu {
     }
 
     /**
-     * 按状态查看需求
+     * View Requirements by Status
      */
     private void viewRequirementsByStatus() {
         System.out.println("\n===== View Requirements by Status =====");
@@ -273,7 +273,7 @@ public class ClassDirectorMenu {
     }
 
     /**
-     * 搜索教学需求
+     * Search for Teaching Requirements
      */
     private void searchRequirements() {
         System.out.print("\nEnter course name keyword: ");
@@ -284,10 +284,10 @@ public class ClassDirectorMenu {
     }
 
     /**
-     * 显示需求列表
+     * Display requirements list
      *
-     * @param requirements 需求列表
-     * @param title 标题
+     * @param requirements Requirements List
+     * @param title title
      */
     private void displayRequirements(List<TeachingRequirement> requirements, String title) {
         System.out.println("\n===== " + title + " =====");
