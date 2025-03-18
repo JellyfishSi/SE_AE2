@@ -15,16 +15,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // 初始化数据访问对象
+        // Initialising data access objects
         TeachingRequirementDAO requirementDAO = new FileTeachingRequirementDAO();
         TeacherDAO teacherDAO = new FileTeacherDAO();
 
-        // 初始化控制器
+        // Initialising the controller
         ClassDirectorController classDirectorController = new ClassDirectorController(requirementDAO);
         AdminController adminController = new AdminController(teacherDAO);
         TeacherController teacherController = new TeacherController(teacherDAO);
 
-        // 初始化视图
+        // Initialising the view
         ClassDirectorMenu classDirectorMenu = new ClassDirectorMenu(classDirectorController, scanner);
         AdminMenu adminMenu = new AdminMenu(adminController, scanner);
         TeacherMenu teacherMenu = new TeacherMenu(teacherController);
