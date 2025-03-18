@@ -17,7 +17,7 @@ public class FileTeacherDAO implements TeacherDAO {
         loadAll();
     }
 
-    // 自动创建 data 目录
+    // Automatically create data directory
     private void createDataDirectory() {
         File directory = new File(DIRECTORY_PATH);
         if (!directory.exists()) {
@@ -86,7 +86,7 @@ public class FileTeacherDAO implements TeacherDAO {
     public boolean loadAll() {
         File file = new File(FILE_PATH);
 
-        // 如果文件不存在，创建空Map并返回成功
+        // If file doesn't exist, create an empty Map and return success
         if (!file.exists()) {
             teacherDB.clear();
             return true;
@@ -95,31 +95,31 @@ public class FileTeacherDAO implements TeacherDAO {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
             Object obj = ois.readObject();
 
-            // 检查是否为List类型
+            // Check if it's a List type
             if (!(obj instanceof List<?>)) {
                 System.err.println("Error: Deserialized object is not a List");
                 teacherDB.clear();
                 return false;
             }
 
-            // 安全地转换为List<Teacher>
+            // Safely convert to List<Teacher>
             List<?> rawList = (List<?>) obj;
             List<Teacher> teacherList = new ArrayList<>();
 
             for (Object item : rawList) {
                 if (item instanceof Teacher) {
                     Teacher teacher = (Teacher) item;
-                    // 可以在这里添加额外的验证
+                    // Additional validation can be added here
                     teacherList.add(teacher);
                 } else if (item != null) {
                     System.err.println("Warning: Non-Teacher object found in the list");
                 }
             }
 
-            // 将列表转换为Map
+            // Convert list to Map
             teacherDB.clear();
             for (Teacher teacher : teacherList) {
-                if (teacher.getId() != 0) {  // 假设0是无效ID
+                if (teacher.getId() != 0) {  // Assuming 0 is an invalid ID
                     teacherDB.put(teacher.getId(), teacher);
                 } else {
                     System.err.println("Warning: Skipped a teacher with invalid ID");
@@ -128,7 +128,7 @@ public class FileTeacherDAO implements TeacherDAO {
             return true;
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Error loading data: " + e.getMessage());
-            // 如果加载失败，清空当前Map
+            // If loading fails, clear the current Map
             teacherDB.clear();
             return false;
         }
